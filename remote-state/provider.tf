@@ -8,3 +8,7 @@ terraform {
     
   }
 }
+
+variable "instanceCount" {
+    default = 2
+}
