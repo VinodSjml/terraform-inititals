@@ -6,13 +6,17 @@ data "aws_ami" "ami"{
 
 resource "aws_instance" "web"{
 
-  count         = var.instanceCount  
+  count         = length(var.instances)  
   ami           = "data.aws_ami.ami.image_id"
   instance_type = "t2.micro"
 
     tags = {
-      Name = "tf-test-${count.index+1}"
+      Name = "${var.instances[count.index]}"
     }
+}
+
+variable "instances" {
+  default = ["cart", "catalogue", "user"]
 }
 
 
