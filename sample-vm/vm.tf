@@ -1,5 +1,5 @@
 resource "aws_instance" "web"{
-  ami               = "data"
+  ami               = ""
   instance_type     = "t2.micro"
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
 
@@ -32,4 +32,9 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
+data "aws_ami" "ami"{
+  most_recent      = true
+  name_regex       = "Devops-labimage-centos7-ansible"
+  owners           = ["self"]
+}
 
